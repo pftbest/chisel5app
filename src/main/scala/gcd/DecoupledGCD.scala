@@ -27,12 +27,12 @@ class DecoupledGcd(width: Int) extends Module {
   val input = IO(Flipped(Decoupled(new GcdInputBundle(width))))
   val output = IO(Decoupled(new GcdOutputBundle(width)))
 
-  val xInitial    = Reg(UInt())
-  val yInitial    = Reg(UInt())
+  private val xInitial    = Reg(UInt())
+  private val yInitial    = Reg(UInt())
   val x           = Reg(UInt())
   val y           = Reg(UInt())
-  val busy        = RegInit(false.B)
-  val resultValid = RegInit(false.B)
+  private val busy        = RegInit(false.B)
+  private val resultValid = RegInit(false.B)
 
   input.ready := ! busy
   output.valid := resultValid
